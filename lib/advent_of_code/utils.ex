@@ -1,8 +1,9 @@
 defmodule AdventOfCode.Utils do
   def parse(input) do
     input
+    |> String.trim()
+    |> String.trim("\n")
     |> String.split("\n")
-    |> Enum.filter(fn x -> x != "" end)
   end
 
   def parse_as_int(input) do
