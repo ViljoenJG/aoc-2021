@@ -25,9 +25,7 @@ defmodule AdventOfCode.Day01 do
 
   # Part two
 
-  defp p2_increasing(input) do
-    p2_increasing(input, :infinity, 0)
-  end
+  defp p2_increasing(input), do: p2_increasing(input, :infinity, 0)
 
   defp p2_increasing([a, b, c | t], prev, acc) do
     sum = a + b + c
