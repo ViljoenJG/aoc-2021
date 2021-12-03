@@ -64,5 +64,47 @@ defmodule AdventOfCode.Day03 do
   end
 
   def part2(args) do
+    input =
+      args
+      |> Utils.parse()
+      |> Enum.map(&String.split(&1, "", trim: true))
+      |> Enum.map(&List.to_tuple/1)
+
+    oxygen_rating(input, 0) * co2_scrubber_rating(input, 0)
+  end
+
+  def oxygen_rating([elem], _pos), do: to_integer(elem)
+
+  def oxygen_rating(input, pos) do
+    groups = Enum.group_by(input, &elem(&1, pos))
+    zeros_group = groups["0"] || []
+    ones_group = groups["1"] || []
+
+    if length(zeros_group) > length(ones_group) do
+      oxygen_rating(zeros_group, pos + 1)
+    else
+      oxygen_rating(ones_group, pos + 1)
+    end
+  end
+
+  def co2_scrubber_rating([elem], _pos), do: to_integer(elem)
+
+  def co2_scrubber_rating(input, pos) do
+    groups = Enum.group_by(input, &elem(&1, pos))
+    zeros_group = groups["0"] || []
+    ones_group = groups["1"] || []
+
+    if length(ones_group) < length(zeros_group) do
+      co2_scrubber_rating(ones_group, pos + 1)
+    else
+      co2_scrubber_rating(zeros_group, pos + 1)
+    end
+  end
+
+  defp to_integer(tuple) do
+    tuple
+    |> Tuple.to_list()
+    |> Enum.join("")
+    |> String.to_integer(2)
   end
 end
