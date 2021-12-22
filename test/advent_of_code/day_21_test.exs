@@ -3,12 +3,13 @@ defmodule AdventOfCode.Day21Test do
 
   import AdventOfCode.Day21
 
-  @tag :skip
-  test "part1" do
-    input = nil
-    result = part1(input)
+  @input """
+  Player 1 starting position: 4
+  Player 2 starting position: 8
+  """
 
-    assert result
+  test "part1" do
+    assert part1(@input) == 739_785
   end
 
   @tag :skip
