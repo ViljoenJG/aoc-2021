@@ -12,11 +12,8 @@ defmodule AdventOfCode.Day21Test do
     assert part1(@input) == 739_785
   end
 
-  @tag :skip
   test "part2" do
-    input = nil
-    result = part2(input)
-
-    assert result
+    result = part2(@input)
+    assert result == 444_356_092_776_315
   end
 end
